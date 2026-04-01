@@ -1,0 +1,162 @@
+/* ═══════════════════════════════
+   SIDEBAR
+═══════════════════════════════ */
+.sidebar {
+  width: 240px;
+  flex-shrink: 0;
+  height: calc(100vh - 94px);
+  position: sticky;
+  top: 94px;
+  overflow: hidden;           /* clips the pill overflow */
+  scrollbar-width: none;
+  border-right: 1px solid rgba(255,255,255,0.35);
+
+  background:
+    radial-gradient(ellipse 160px 140px at 10% 5%,   #aec4df 0%, transparent 70%),
+    radial-gradient(ellipse 180px 160px at 95% 28%,  #c4afd4 0%, transparent 70%),
+    radial-gradient(ellipse 200px 180px at 5%  58%,  #a8c0dc 0%, transparent 70%),
+    radial-gradient(ellipse 160px 150px at 85% 72%,  #d0b8d8 0%, transparent 65%),
+    radial-gradient(ellipse 180px 160px at 40% 90%,  #b8cce0 0%, transparent 70%),
+    radial-gradient(ellipse 120px 120px at 60% 40%,  #c8b8d8 0%, transparent 65%),
+    linear-gradient(170deg, #c8d4e4 0%, #bfc8dc 30%, #c4b8d4 60%, #ccc4d8 100%);
+}
+.sidebar::-webkit-scrollbar { display: none; }
+
+/* Inner scroll wrapper so overflow:hidden on .sidebar clips pill */
+.sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  padding: 6px 0 32px;
+  padding-left: 10px;
+  gap: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  max-height: calc(100vh - 94px - 100px); /* leave room for avatar */
+  scrollbar-width: none;
+}
+.sidebar-nav::-webkit-scrollbar { display: none; }
+
+/* Avatar */
+.sidebar-avatar-wrap {
+  display: flex;
+  justify-content: center;
+  padding: 20px 0 10px;
+  flex-shrink: 0;
+}
+.sidebar-avatar {
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 2.5px solid #c9a227;
+  box-shadow: 0 0 0 3px rgba(201,162,39,0.22);
+}
+.sidebar-avatar img { width: 100%; height: 100%; object-fit: cover; }
+
+/* ── Base day item ── */
+.sidebar-day-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px 18px 15px 28px;
+  border-radius: 999px;
+  font-size: 0.975rem;
+  font-weight: 500;
+  font-family: var(--font-display);
+  color: rgba(52, 64, 84, 0.75);
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  width: 100%;
+  text-align: left;
+  transition: background 0.15s ease, color 0.15s ease;
+  flex-shrink: 0;
+}
+
+.sidebar-day-item:hover:not(:disabled):not(.selected) {
+  background: rgba(255,255,255,0.25);
+  color: rgba(25,38,60,0.95);
+}
+
+/* ── SELECTED ── bleeds right, rounded top-right curves above */
+.sidebar-day-item.selected {
+  /* Bleed past the right edge — sidebar overflow:hidden clips it */
+  width: calc(100% + 20px);
+  margin-left: 0;
+  margin-right: -20px;
+
+  /* Only left side is fully rounded; right is cut by parent overflow */
+  border-radius: 999px 0 0 999px;
+
+  background: linear-gradient(160deg, #f8f9fb 0%, #edf0f4 60%, #e8ecf0 100%);
+  color: #0d1117;
+  font-weight: 800;
+  font-size: 1.05rem;
+  padding: 19px 24px 19px 28px;
+
+  box-shadow:
+    0 6px 24px rgba(0,0,0,0.12),
+    0 2px 6px rgba(0,0,0,0.07),
+    inset 0 1px 0 rgba(255,255,255,0.95);
+
+  cursor: default;
+
+  /* Float up slightly so top-right corner arc is visible above */
+  position: relative;
+  top: -4px;
+  margin-bottom: -4px;
+  z-index: 2;
+}
+
+/* Locked */
+.sidebar-day-item.locked {
+  cursor: not-allowed;
+  color: rgba(52, 64, 84, 0.60);
+}
+/* Completed */
+.sidebar-day-item.completed {
+  color: rgba(52, 64, 84, 0.72);
+}
+
+.day-icon {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+/* ═══ DARK MODE ═══ */
+.dark .sidebar {
+  background:
+    radial-gradient(ellipse 160px 140px at 10% 5%,   rgba(40,75,150,0.75) 0%, transparent 70%),
+    radial-gradient(ellipse 180px 160px at 95% 28%,  rgba(110,45,140,0.65) 0%, transparent 70%),
+    radial-gradient(ellipse 200px 180px at 5%  58%,  rgba(35,70,145,0.68) 0%, transparent 70%),
+    radial-gradient(ellipse 160px 150px at 85% 72%,  rgba(100,40,125,0.55) 0%, transparent 65%),
+    linear-gradient(170deg, rgba(18,24,45,0.95) 0%, rgba(22,18,40,0.92) 50%, rgba(20,26,48,0.94) 100%);
+  border-right: 1px solid rgba(255,255,255,0.06);
+}
+.dark .sidebar-day-item { color: rgba(175,190,215,0.65); }
+.dark .sidebar-day-item:hover:not(:disabled):not(.selected) {
+  background: rgba(255,255,255,0.07);
+  color: rgba(215,225,245,0.95);
+}
+.dark .sidebar-day-item.selected {
+  background: linear-gradient(160deg, rgba(255,255,255,0.16) 0%, rgba(255,255,255,0.09) 100%);
+  color: #f1f5f9;
+  box-shadow: 0 6px 24px rgba(0,0,0,0.45), inset 0 1px 0 rgba(255,255,255,0.12);
+}
+.dark .sidebar-day-item.locked { color: rgba(140,158,190,0.42); }
+
+/* ═══ MOBILE ═══ */
+@media (max-width: 768px) {
+  .sidebar {
+    position: fixed;
+    left: 0; top: 94px;
+    height: calc(100vh - 94px);
+    z-index: 45;
+    transform: translateX(-100%);
+    transition: transform 0.35s cubic-bezier(0.4,0,0.2,1);
+    box-shadow: var(--shadow-lg);
+    width: 220px;
+  }
+  .sidebar--open { transform: translateX(0); }
+}

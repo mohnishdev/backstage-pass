@@ -1,0 +1,167 @@
+@import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=DM+Sans:wght@300;400;500;600&display=swap");
+
+/* ── CSS Variables ── */
+:root {
+  --font-display: "Plus Jakarta Sans", sans-serif;
+  --font-body: "DM Sans", sans-serif;
+
+  /* Radius */
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --radius-xl: 24px;
+
+  /* Transitions */
+  --transition: 0.2s ease;
+  --transition-slow: 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ── Light Theme ── */
+.app.light {
+  --bg-base: #f2f3f5;
+  --bg-surface: #ffffff;
+  --bg-surface-2: #f8f9fa;
+  --bg-sidebar: #ffffff;
+  --bg-nav: #ffffff;
+
+  --text-primary: #0f1117;
+  --text-secondary: #6b7280;
+  --text-tertiary: #9ca3af;
+  --text-muted: #b0b8c4;
+
+  --border: #e5e7eb;
+  --border-light: #f0f1f3;
+
+  --accent: #d4a843;
+  --accent-bg: #fff8e6;
+  --green: #22c55e;
+  --green-bg: #dcfce7;
+
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.07), 0 1px 2px rgba(0, 0, 0, 0.04);
+  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.08), 0 1px 4px rgba(0, 0, 0, 0.04);
+  --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.1), 0 2px 8px rgba(0, 0, 0, 0.05);
+
+  --sidebar-selected-bg: #ffffff;
+  --sidebar-hover-bg: rgba(0, 0, 0, 0.04);
+  --sidebar-item-blur: rgba(255, 255, 255, 0.3);
+}
+
+/* ── Dark Theme ── */
+.app.dark {
+  --bg-base: #0f1117;
+  --bg-surface: #1a1d27;
+  --bg-surface-2: #222533;
+  --bg-sidebar: #1a1d27;
+  --bg-nav: #1a1d27;
+
+  --text-primary: #f1f3f9;
+  --text-secondary: #9ba3b5;
+  --text-tertiary: #6b7280;
+  --text-muted: #4b5563;
+
+  --border: #2a2d3e;
+  --border-light: #222533;
+
+  --accent: #f0b429;
+  --accent-bg: #2a2200;
+  --green: #4ade80;
+  --green-bg: #052e16;
+
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.3), 0 1px 2px rgba(0, 0, 0, 0.2);
+  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.35), 0 1px 4px rgba(0, 0, 0, 0.2);
+  --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.4), 0 2px 8px rgba(0, 0, 0, 0.25);
+
+  --sidebar-selected-bg: #252838;
+  --sidebar-hover-bg: rgba(255, 255, 255, 0.05);
+  --sidebar-item-blur: rgba(26, 29, 39, 0.3);
+}
+
+/* ── Reset & Base ── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 15px;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  background: var(--bg-base);
+  color: var(--text-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+  font-family: inherit;
+  color: inherit;
+}
+
+/* ── App Layout ── */
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg-base);
+  transition: background var(--transition-slow), color var(--transition-slow);
+}
+
+.app-body {
+  display: flex;
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+}
+
+/* ── Sidebar Overlay (mobile) ── */
+.sidebar-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 40;
+  backdrop-filter: blur(2px);
+  animation: fadeIn 0.2s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar {
+  width: 5px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 10px;
+}
+
+/* ── Mobile ── */
+@media (max-width: 768px) {
+  .sidebar-overlay {
+    display: block;
+  }
+}
