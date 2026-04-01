@@ -30,19 +30,19 @@ export default function Sidebar({ selectedDay, onDaySelect, isOpen }) {
       </div>
       <nav className="sidebar-nav">
         {DAYS.map((day) => {
+          const isSelected = day === selectedDay;
           const isCompleted = day < selectedDay;
-          const isSelected  = day === selectedDay;
-          const isLocked    = day > selectedDay;
+          const isLocked = day > selectedDay;
+
           return (
             <button
               key={day}
               className={`sidebar-day-item${isSelected ? " selected" : ""}${isCompleted ? " completed" : ""}${isLocked ? " locked" : ""}`}
-              onClick={() => !isLocked && onDaySelect(day)}
-              disabled={isLocked}
+              onClick={() => onDaySelect(day)}
             >
               <span className="day-label">Day - {day}</span>
               <span className="day-icon">
-                {(isSelected || isCompleted) ? <GreenCheck /> : <LockIcon />}
+                {isCompleted || isSelected ? <GreenCheck /> : isLocked ? <LockIcon /> : null}
               </span>
             </button>
           );

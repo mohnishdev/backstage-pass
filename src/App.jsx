@@ -17,7 +17,7 @@ export default function App() {
       <Navbar
         theme={theme}
         toggleTheme={toggleTheme}
-        
+        onOpenSidebar={() => setSidebarOpen(true)}
       />
       <div className="app-body">
         <Sidebar

@@ -27,7 +27,6 @@
   display: flex;
   flex-direction: column;
   padding: 6px 0 32px;
-  padding-left: 10px;
   gap: 0;
   overflow-y: auto;
   overflow-x: hidden;
@@ -60,7 +59,7 @@
   justify-content: space-between;
   padding: 15px 18px 15px 28px;
   border-radius: 999px;
-  font-size: 0.975rem;
+  font-size: 0.82rem;
   font-weight: 500;
   font-family: var(--font-display);
   color: rgba(52, 64, 84, 0.75);
@@ -91,8 +90,8 @@
   background: linear-gradient(160deg, #f8f9fb 0%, #edf0f4 60%, #e8ecf0 100%);
   color: #0d1117;
   font-weight: 800;
-  font-size: 1.05rem;
-  padding: 19px 24px 19px 28px;
+  font-size: 0.88rem;
+  padding: 19px 18px 19px 28px;
 
   box-shadow:
     0 6px 24px rgba(0,0,0,0.12),
@@ -108,9 +107,13 @@
   z-index: 2;
 }
 
+.sidebar-day-item.selected .day-icon {
+  transform: translateX(-20px);
+}
+
 /* Locked */
 .sidebar-day-item.locked {
-  cursor: not-allowed;
+  cursor: pointer;
   color: rgba(52, 64, 84, 0.60);
 }
 /* Completed */

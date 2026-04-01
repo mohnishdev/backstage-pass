@@ -1,25 +1,34 @@
-import { Bell, Sun, Moon } from "lucide-react";
+import { Bell, Sun, Moon, PanelLeft } from "lucide-react";
 import "./Navbar.css";
 
-export default function Navbar({ theme, toggleTheme }) {
+export default function Navbar({ theme, toggleTheme, onOpenSidebar }) {
   return (
     <header className="navbar">
       {/* ── Row 1: Brand left, icons right ── */}
       <div className="navbar-row navbar-row--top">
-        <div className="navbar-brand">
-          <span className="brand-icon">
-            <svg width="24" height="20" viewBox="0 0 24 20" fill="none">
-              <circle cx="12" cy="10" r="2.6" fill="var(--accent)" />
-              <path d="M7 4.5 A7.2 7.2 0 0 0 7 15.5" stroke="var(--accent)" strokeWidth="1.9" strokeLinecap="round" fill="none"/>
-              <path d="M17 4.5 A7.2 7.2 0 0 1 17 15.5" stroke="var(--accent)" strokeWidth="1.9" strokeLinecap="round" fill="none"/>
-              <path d="M3.5 1.5 A11.5 11.5 0 0 0 3.5 18.5" stroke="var(--accent)" strokeWidth="1.9" strokeLinecap="round" fill="none" opacity="0.45"/>
-              <path d="M20.5 1.5 A11.5 11.5 0 0 1 20.5 18.5" stroke="var(--accent)" strokeWidth="1.9" strokeLinecap="round" fill="none" opacity="0.45"/>
-            </svg>
-          </span>
-          <span className="brand-text">
-            <span className="brand-backstage">Backstage</span>
-            <span className="brand-pass">Pass</span>
-          </span>
+        <div className="navbar-left">
+          <button
+            className="icon-btn sidebar-toggle"
+            onClick={onOpenSidebar}
+            aria-label="Open sidebar"
+          >
+            <PanelLeft size={17} strokeWidth={1.9} />
+          </button>
+          <div className="navbar-brand">
+            <span className="brand-icon">
+              <svg width="24" height="20" viewBox="0 0 24 20" fill="none">
+                <circle cx="12" cy="10" r="2.6" fill="var(--accent)" />
+                <path d="M7 4.5 A7.2 7.2 0 0 0 7 15.5" stroke="var(--accent)" strokeWidth="1.9" strokeLinecap="round" fill="none"/>
+                <path d="M17 4.5 A7.2 7.2 0 0 1 17 15.5" stroke="var(--accent)" strokeWidth="1.9" strokeLinecap="round" fill="none"/>
+                <path d="M3.5 1.5 A11.5 11.5 0 0 0 3.5 18.5" stroke="var(--accent)" strokeWidth="1.9" strokeLinecap="round" fill="none" opacity="0.45"/>
+                <path d="M20.5 1.5 A11.5 11.5 0 0 1 20.5 18.5" stroke="var(--accent)" strokeWidth="1.9" strokeLinecap="round" fill="none" opacity="0.45"/>
+              </svg>
+            </span>
+            <span className="brand-text">
+              <span className="brand-backstage">Backstage</span>
+              <span className="brand-pass">Pass</span>
+            </span>
+          </div>
         </div>
 
         <div className="navbar-right">

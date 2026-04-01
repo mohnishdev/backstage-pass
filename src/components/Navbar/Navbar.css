@@ -21,6 +21,12 @@
   padding: 0 20px;
 }
 
+.navbar-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
 /* ── Row 1: Brand + right icons ── */
 .navbar-row--top {
   height: 52px;
@@ -115,6 +121,10 @@
   border: none;
 }
 
+.sidebar-toggle {
+  display: none;
+}
+
 .avatar {
   width: 36px;
   height: 36px;
@@ -204,6 +214,10 @@
 @media (max-width: 600px) {
   .navbar-row {
     padding: 0 14px;
+  }
+
+  .sidebar-toggle {
+    display: inline-flex;
   }
 
   .challenge-title {
